@@ -1,5 +1,6 @@
 'use strict';
 
+
 describe('Feature test', function() {
   var thermostat;
 
@@ -28,7 +29,7 @@ describe('Feature test', function() {
 
   it('Temperature returns minimum temp message', function() {
     for (var i = 0; i < 11; i++) thermostat.tempDown();
-    expect(thermostat.tempDown()).toEqual("The minimum temperature cannot be less than 10")
+    expect(thermostat.tempDown()).toEqual("The minimum temperature cannot be less than 10");
   });
 
   it('Temperature check maximum value 25 when power save is enabled', function() {

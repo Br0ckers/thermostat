@@ -4,8 +4,8 @@ function Thermostat(){
   this._currTemp = 20;
   this._minTemp = 10;
   this._powerSavingMode = true;
-  this._maxTempPSMon = 25
-  this._maxTempPSMoff = 32
+  this._maxTempPSMon = 25;
+  this._maxTempPSMoff = 32;
 }
 
 Thermostat.prototype.temp = function() {
@@ -13,11 +13,10 @@ Thermostat.prototype.temp = function() {
 };
 
 Thermostat.prototype.tempUp = function() {
-  if (this._currTemp < 25) {
-    ++this._currTemp;
-  } else {
-    return "The maximum temperture in economy mode cannot exceed 25";
+  if (this.isMaxTemp()) {
+    return;
   }
+  ++this._currTemp;
 };
 
 Thermostat.prototype.tempDown = function() {
@@ -38,4 +37,11 @@ Thermostat.prototype.switchPowerSavingModeOff = function() {
 
 Thermostat.prototype.switchPowerSavingModeOn = function() {
   this._powerSavingMode = true;
+};
+
+Thermostat.prototype.isMaxTemp = function () {
+  if (this.isPowerSavingModeOn() === false) {
+    return this._currTemp === this._maxTempPSMoff;
+  }
+  return this._currTemp === this._maxTempPSMon;
 };
