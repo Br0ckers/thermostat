@@ -1,6 +1,6 @@
 'use strict';
 
-describe('test Thermostat', function() {
+describe('Test Thermostat', function() {
   var thermostat;
 
   beforeEach(function() {
@@ -46,14 +46,59 @@ describe('test Thermostat', function() {
     expect(thermostat.isPowerSavingModeOn()).toBe(true);
   });
 
-  it('When Power Saving Mode is enabled, test max temp is 25', function(){
+  describe('When Power Saving Mode is enabled', function() {
+    it('Test max temp is 25', function() {
+      for (var i = 0; i < 6; i++) {
+        thermostat.tempUp();
+      }
+      expect(thermostat.temp()).toEqual(25);
+    });
+  });
+
+  describe('When Power Saving Mode is disabled', function() {
+    it('Test max temp is 32', function() {
+      thermostat.switchPowerSavingModeOff();
+      for (var i = 0; i < 13; i++) {
+        thermostat.tempUp();
+      }
+      expect(thermostat.temp()).toEqual(32);
+    });
+  });
+
+  it('Thermostat can be reset to default', function() {
     for (var i = 0; i < 6; i++) {
       thermostat.tempUp();
     }
-    expect(thermostat.temp()).toEqual(25);
+    thermostat.resetTemp();
+    expect(thermostat.temp()).toEqual(20);
   });
 
+  describe('Usage Levels', function() {
+    describe('Temperture below 18 Deg', function() {
+      it('low usage', function() {
+        for (var i = 0; i < 3; i++) {
+          thermostat.tempDown();
+        }
+        expect(thermostat.energyUsage()).toEqual('low usage');
+      });
+    });
 
+    describe('Temperture is between 18 and 25 Deg', function() {
+      it('medium usage', function() {
+        expect(thermostat.energyUsage()).toEqual('medium usage');
+      });
+    });
+    
+    describe('Temperture at any other value', function() {
+      it('high usage', function() {
+        thermostat._powerSavingMode = false;
+        for (var i = 0; i < 6; i++) {
+          thermostat.tempUp();
+        }
+        expect(thermostat.energyUsage()).toEqual('high usage');
+      });
+    });
+  });
 
 
 
