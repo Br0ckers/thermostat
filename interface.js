@@ -39,16 +39,16 @@ displayWeather('London');
     updateTemperature();
   });
 
-  $('#psm-on').click(function() {
-    thermostat.switchPowerSavingModeOn();
-    $('#power-saving').text('on')
-    updateTemperature();
-  })
 
-  $('#psm-off').click(function() {
-    thermostat.switchPowerSavingModeOff();
-    $('#power-saving').text('off')
-    updateTemperature();
+
+  $('#pstog').click(function() {
+    if (thermostat.isPowerSavingModeOn()) {
+      thermostat.switchPowerSavingModeOff();
+      $('#pstog').attr('class', 'button_off')
+    }else{
+      thermostat.switchPowerSavingModeOn();
+      $('#pstog').attr('class', 'button_on')
+    }
   })
 
   function updateTemperature() {
