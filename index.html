@@ -1,23 +1,40 @@
 <html>
   <head>
+    <link rel="stylesheet" href="thermostat.css">
     <title>Thermostat</title>
   </head>
-  <script src="js/thermostat.js"></script>
+  <script src="./src/thermostat.js"></script>
+  <script src="jquery.js"></script>
+  <script src="interface.js"></script>
   <body>
     <section>
-      <h1 id="temperature"></h1>
+      <h1> Thermostat </h1>
+      <h2 id="temp"></h1>
       <p>
-        <button id="temperature-up">+</button>
-        <button id="temperature-down">-</button>
+        <button id="temp-up">+</button>
+        <button id="temp-down">-</button>
         <br/>
         <br/>
-        <button id="temperature-reset">reset</button>
+        <button id="reset">reset</button>
         <br/>
         <br/>
-        power saving mode is <span id="power-saving-status">on</span>
-        <button id="powersaving-on">PSM on</button>
-        <button id="powersaving-off">PSM off</button>
+        power saving mode <span id="power-saving-status">on</span>
+        <button id="psm-on">PSM on</button>
+        <button id="psm-off">PSM off</button>
       </p>
     </section>
+    <section>
+        <h1>Selected City temperature: <span id="current-temperature"></span>&#186;</h1>
+    </section>
+    <section>
+
+    <select id="current-city">
+    <option value="london">London</option>
+    <option value="new york">New York</option>
+    <option value="sao+paulo">Sao Paulo</option>
+    <option value="paris">Paris</option>
+    <option value="tokyo">Tokyo</option>
+  </select>
+</section>
   </body>
 </html>

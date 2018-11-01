@@ -55,11 +55,11 @@ Thermostat.prototype.resetTemp = function() {
 
 Thermostat.prototype.energyUsage = function () {
   if (this._currTemp < this.MEDIUM_ENERGY_USAGE_LIMIT) {
-    return 'low usage';
+    return 'low-usage';
   }
   if (this._currTemp >= this.MEDIUM_ENERGY_USAGE_LIMIT && this._currTemp <= this._maxTempPSMon) {
-    return 'medium usage';
+    return 'medium-usage';
   }
-  return 'high usage';
+  return 'high-usage';
 
 };

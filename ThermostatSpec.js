@@ -75,27 +75,27 @@ describe('Test Thermostat', function() {
 
   describe('Usage Levels', function() {
     describe('Temperture below 18 Deg', function() {
-      it('low-usage', function() {
+      it('low usage', function() {
         for (var i = 0; i < 3; i++) {
           thermostat.tempDown();
         }
-        expect(thermostat.energyUsage()).toEqual('low-usage');
+        expect(thermostat.energyUsage()).toEqual('low usage');
       });
     });
 
     describe('Temperture is between 18 and 25 Deg', function() {
-      it('medium-usage', function() {
-        expect(thermostat.energyUsage()).toEqual('medium-usage');
+      it('medium usage', function() {
+        expect(thermostat.energyUsage()).toEqual('medium usage');
       });
     });
-
+    
     describe('Temperture at any other value', function() {
       it('high usage', function() {
         thermostat._powerSavingMode = false;
         for (var i = 0; i < 6; i++) {
           thermostat.tempUp();
         }
-        expect(thermostat.energyUsage()).toEqual('high-usage');
+        expect(thermostat.energyUsage()).toEqual('high usage');
       });
     });
   });
